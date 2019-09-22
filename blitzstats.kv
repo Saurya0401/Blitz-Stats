@@ -1,0 +1,77 @@
+#:kivy 1.11.1
+
+<CheckBox>
+    active: False
+    group: 'servers'
+
+<Label>
+    halign: 'center'
+    yalign: 'middle'
+    size: self.texture_size
+
+<MainScreen>
+    username: username
+    stats: stats
+    record: record
+    update_timestamp : update_timestamp
+
+    cols: 1
+
+    GridLayout:
+        cols: 2
+
+        Label:
+            text: "Username: "
+        TextInput:
+            id: username
+            multiline: False
+
+    GridLayout:
+        rows: 2
+        cols: 4
+
+        Label:
+            text: "NA"
+        CheckBox:
+            on_active: root.server = 'na'
+
+        Label:
+            text: "EU"
+        CheckBox:
+            on_active: root.server = 'eu'
+
+        Label:
+            text: "RU"
+        CheckBox:
+            on_active: root.server = 'ru'
+
+        Label:
+            text: "ASIA"
+        CheckBox:
+            active : True
+            on_active: root.server = 'asia'
+
+    Button:
+        text: "Get Stats"
+        on_press: root.get_player_stats()
+
+    GridLayout:
+        rows: 3
+
+        Label:
+            id: stats
+            text: 'BlitzStats'
+            font_size: '20sp'
+
+        Label:
+            id: record
+            text: 'Enter a username to continue.'
+            font_size: '16sp'
+            size_hint_y: None
+            text_size: self.width, None
+            height: self.texture_size[1]
+
+        Label:
+            id: update_timestamp
+            text: ''
+            font_size: '12sp'
